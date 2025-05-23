@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Verificación MFA</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <form method="post">
+        <h2>Autenticación de dos factores</h2>
+        <input type="text" name="token" placeholder="Código MFA" required>
+        <input type="submit" value="Verificar">
+    </form>
+</body>
+</html>
