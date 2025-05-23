@@ -9,8 +9,53 @@
     <form method="post">
         <h2>Iniciar Sesión</h2>
         <input type="text" name="username" placeholder="Usuario" required>
-        <input type="password" name="password" placeholder="Contraseña" required>
+        <!-- ...existing code... -->
+        <input type="password" name="password" id="password" placeholder="Contraseña" required>
+        <div id="password-strength" style="height:8px; background:#eee; border-radius:4px; margin:6px 0;">
+            <div id="strength-bar" style="height:100%; width:0%; background:red; border-radius:4px; transition:width 0.3s;"></div>
+        </div>
+        <p id="password-strength-text" style="display: none;">Fuerza de la contraseña: <span id="strength-text">Débil</span></p>
+        <!-- ...existing code... -->
         <input type="submit" value="Continuar">
     </form>
+<script defer>
+    const password = document.getElementById('password');
+    const bar = document.getElementById('strength-bar');
+    const strengthText = document.getElementById('strength-text');
+    const passwordStrengthText = document.getElementById('password-strength-text');
+
+    password.addEventListener('input', function() {
+        const val = password.value;
+        let score = 0;
+        if (val.length >= 8) score++;
+        if (/[A-Z]/.test(val)) score++;
+        if (/[a-z]/.test(val)) score++;
+        if (/[0-9]/.test(val)) score++;
+        if (/[^A-Za-z0-9]/.test(val)) score++;
+
+        let width = score * 20;
+        bar.style.width = width + '%';
+        if(score > 0){
+            passwordStrengthText.style.display = 'block';
+        } else {
+            passwordStrengthText.style.display = 'none';
+        }
+
+        if (score <= 2) {
+            bar.style.background = 'red';
+            strengthText.textContent = 'Débil';
+        } else if (score === 3) {
+            bar.style.background = 'orange';
+            strengthText.textContent = 'Moderada';
+        } else if (score === 4) {
+            bar.style.background = 'yellowgreen';
+            strengthText.textContent = 'Fuerte';
+        } else {
+            bar.style.background = 'green';
+            strengthText.textContent = 'Muy Fuerte';
+        }
+    });
+</script>
+</body>
 </body>
 </html>
