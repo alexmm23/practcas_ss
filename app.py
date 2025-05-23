@@ -10,7 +10,7 @@ app.secret_key = 'clave_secreta'
 # Usuario simulado
 USER = {
     "username": "admin",
-    "password": "1234",
+    "password": "z*iB8vOU",
     "totp_secret": "JBSWY3DPEHPK3PXP"  # Clave secreta para TOT
 }
 
