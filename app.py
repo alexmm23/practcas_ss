@@ -46,9 +46,10 @@ def mfa():
 
         if totp.verify(token, valid_window=2):
             session['mfa'] = True
-            return f"<h2>Bienvenido {session['user']}, autenticación exitosa.</h2>"
+            return render_template('index.html', user=session['user'])
+            # return f"<h2>Bienvenido {session['user']}, autenticación exitosa.</h2>"
         else:
-            return "<h2>Código incorrecto. Intenta de nuevo.</h2>"
+            return "<h2>Código incorrecto. Intenta de nuevo.</h2><a href='/login'>Volver</a>"
 
     return render_template('mfa.html')
 
